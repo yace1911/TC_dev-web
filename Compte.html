@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - MY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            background-color: white;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-actions a {
+            margin-left: 15px;
+            font-size: 18px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 32px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Account Container */
+        .account-container {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+        
+        /* Auth Forms */
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .auth-tab.active {
+            background-color: #4a6cf7;
+            color: white;
+        }
+        
+        .auth-content {
+            padding: 30px;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-check input {
+            margin-right: 10px;
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            color: #4a6cf7;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #3a5bd9;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            display: none; /* Initially hidden, shown when logged in */
+        }
+        
+        .dashboard.active {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+        
+        .dashboard-sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .user-info {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #4a6cf7;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 15px;
+        }
+        
+        .user-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .user-email {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .dashboard-nav-item {
+            padding: 12px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .dashboard-nav-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .dashboard-nav-item.active {
+            background-color: #4a6cf7;
+            color: white;
+        }
+        
+        .dashboard-nav-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dashboard-nav-item.logout {
+            margin-top: 20px;
+            color: #e74c3c;
+        }
+        
+        .dashboard-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .dashboard-panel {
+            display: none;
+        }
+        
+        .dashboard-panel.active {
+            display: block;
+        }
+        
+        .panel-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Orders */
+        .order-item {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-number {
+            font-weight: bold;
+        }
+        
+        .order-date {
+            color: #666;
+        }
+        
+        .order-status {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-delivered {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .status-processing {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .order-products {
+            flex: 1;
+        }
+        
+        .order-product {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .order-product-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        
+        .order-product-info {
+            flex: 1;
+        }
+        
+        .order-product-name {
+            font-weight: bold;
+        }
+        
+        .order-product-price {
+            color: #666;
+        }
+        
+        .order-summary {
+            width: 200px;
+            text-align: right;
+        }
+        
+        .order-total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .order-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+            width: auto;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #4a6cf7;
+            color: #4a6cf7;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f0f4ff;
+        }
+        
+        /* Addresses */
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .address-card {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .address-card.default {
+            border-color: #4a6cf7;
+        }
+        
+        .address-default-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4a6cf7;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .address-type {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .address-content {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-address {
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            height: 100%;
+        }
+        
+        .add-address:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .add-address i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #4a6cf7;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .payment-card {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .payment-card.default {
+            border-color: #4a6cf7;
+        }
+        
+        .payment-default-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4a6cf7;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .payment-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .payment-number {
+            font-weight: bold;S
+            margin-bottom: 5px;
+        }
+        
+        .payment-expiry {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .payment-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-payment {
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            height: 100%;
+        }
+        
+        .add-payment:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .add-payment i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #4a6cf7;
+        }
+        
+        /* Security */
+        .security-section {
+            margin-bottom: 30px;
+        }
+        
+        .security-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .security-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            font-size: 20px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard.active {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-sidebar {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .addresses-grid, .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="acceuil.html">MY</a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="acceuil.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="evenement.html">Événements</a></li>
+                        <li><a href="a_propos.html">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="#" title="Rechercher"><i class="fas fa-search"></i></a>
+                    <a href="#" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="Compte.html" title="Compte"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mobile-menu-btn" title="Menu"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Mon Compte</h1>
+            
+            <div class="account-container">
+                <!-- Authentication Forms (shown when not logged in) -->
+                <div class="auth-container" id="authContainer">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" data-tab="login">Connexion</div>
+                        <div class="auth-tab" data-tab="register">Inscription</div>
+                    </div>
+                    
+                    <div class="auth-content">
+                        <!-- Login Form -->
+                        <form class="auth-form active" id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                <input type="email" id="loginEmail" class="form-control" placeholder="exemple@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="loginPassword">Mot de passe</label>
+                                <input type="password" id="loginPassword" class="form-control" required>
+                                <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="rememberMe">
+                                <label for="rememberMe">Se souvenir de moi</label>
+                            </div>
+                            
+                            <button type="button" class="btn" id="loginButton">Se connecter</button>
+                        </form>
+                        
+                        <!-- Register Form -->
+                        <form class="auth-form" id="registerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Prénom</label>
+                                    <input type="text" id="firstName" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName">Nom</label>
+                                    <input type="text" id="lastName" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="registerEmail">Email</label>
+                                <input type="email" id="registerEmail" class="form-control" placeholder="exemple@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="registerPassword">Mot de passe</label>
+                                <input type="password" id="registerPassword" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmer le mot de passe</label>
+                                <input type="password" id="confirmPassword" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Adresse</label>
+                                <input type="text" id="address" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="termsAgree" required>
+                                <label for="termsAgree">J'accepte les conditions générales d'utilisation</label>
+                            </div>
+                            
+                            <button type="button" class="btn" id="registerButton">S'inscrire</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Dashboard (shown when logged in) -->
+                <div class="dashboard" id="dashboardContainer">
+                    <div class="dashboard-sidebar">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-name">Jean Dupont</div>
+                            <div class="user-email">jean.dupont@example.com</div>
+                        </div>
+                        
+                        <div class="dashboard-nav">
+                            <div class="dashboard-nav-item active" data-panel="profile">
+                                <i class="fas fa-user"></i> Informations personnelles
+                            </div>
+                            <div class="dashboard-nav-item" data-panel="orders">
+                                <i class="fas fa-shopping-bag"></i> Mes commandes
+                            </div>
+                            <div class="dashboard-nav-item" data-panel="addresses">
+                                <i class="fas fa-map-marker-alt"></i> Mes adresses
+                            </div>
+                            <div class="dashboard-nav-item" data-panel="payment">
+                                <i class="fas fa-credit-card"></i> Moyens de paiement
+                            </div>
+                            <div class="dashboard-nav-item" data-panel="security">
+                                <i class="fas fa-shield-alt"></i> Sécurité
+                            </div>
+                            <div class="dashboard-nav-item logout" id="logoutButton">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-content">
+                        <!-- Profile Panel -->
+                        <div class="dashboard-panel active" id="profilePanel">
+                            <h2 class="panel-title">Informations personnelles</h2>
+                            
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="profileFirstName">Prénom</label>
+                                        <input type="text" id="profileFirstName" class="form-control" value="Jean">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="profileLastName">Nom</label>
+                                        <input type="text" id="profileLastName" class="form-control" value="Dupont">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="profileEmail">Email</label>
+                                        <input type="email" id="profileEmail" class="form-control" value="jean.dupont@example.com">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="profilePhone">Téléphone</label>
+                                        <input type="tel" id="profilePhone" class="form-control" value="06 12 34 56 78">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileBirthdate">Date de naissance</label>
+                                    <input type="date" id="profileBirthdate" class="form-control" value="1985-05-15">
+                                </div>
+                                
+                                <button type="button" class="btn">Enregistrer les modifications</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Orders Panel -->
+                        <div class="dashboard-panel" id="ordersPanel">
+                            <h2 class="panel-title">Mes commandes</h2>
+                            
+                            <div class="orders-list">
+                                <!-- Order 1 -->
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Commande #1001</div>
+                                            <div class="order-date">15 mai 2023</div>
+                                        </div>
+                                        <div class="order-status status-delivered">Livré</div>
+                                    </div>
+                                    
+                                    <div class="order-details">
+                                        <div class="order-products">
+                                            <div class="order-product">
+                                                <img src="https://via.placeholder.com/60x60?text=Chemise" alt="Chemise Oxford" class="order-product-image">
+                                                <div class="order-product-info">
+                                                    <div class="order-product-name">Chemise Oxford</div>
+                                                    <div class="order-product-price">59.99 € x 1</div>
+                                                </div>
+                                            </div>
+                                            <div class="order-product">
+                                                <img src="https://via.placeholder.com/60x60?text=Pantalon" alt="Pantalon Chino" class="order-product-image">
+                                                <div class="order-product-info">
+                                                    <div class="order-product-name">Pantalon Chino</div>
+                                                    <div class="order-product-price">79.99 € x 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="order-summary">
+                                            <div class="order-total">Total: 139.98 €</div>
+                                            <div>Livraison: Gratuite</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-actions">
+                                        <button class="btn btn-sm">Voir les détails</button>
+                                        <button class="btn btn-sm btn-outline">Suivre la livraison</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Order 2 -->
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Commande #1002</div>
+                                            <div class="order-date">2 juin 2023</div>
+                                        </div>
+                                        <div class="order-status status-processing">En cours</div>
+                                    </div>
+                                    
+                                    <div class="order-details">
+                                        <div class="order-products">
+                                            <div class="order-product">
+                                                <img src="https://via.placeholder.com/60x60?text=Veste" alt="Veste en Jean" class="order-product-image">
+                                                <div class="order-product-info">
+                                                    <div class="order-product-name">Veste en Jean</div>
+                                                    <div class="order-product-price">99.99 € x 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="order-summary">
+                                            <div class="order-total">Total: 99.99 €</div>
+                                            <div>Livraison: Gratuite</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-actions">
+                                        <button class="btn btn-sm">Voir les détails</button>
+                                        <button class="btn btn-sm btn-outline">Suivre la livraison</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Addresses Panel -->
+                        <div class="dashboard-panel" id="addressesPanel">
+                            <h2 class="panel-title">Mes adresses</h2>
+                            
+                            <div class="addresses-grid">
+                                <!-- Address 1 -->
+                                <div class="address-card default">
+                                    <div class="address-default-badge">Par défaut</div>
+                                    <div class="address-type">Domicile</div>
+                                    <div class="address-content">
+                                        Jean Dupont<br>
+                                        123 Rue de Paris<br>
+                                        75001 Paris<br>
+                                        France<br>
+                                        Tél: 06 12 34 56 78
+                                    </div>
+                                    <div class="address-actions">
+                                        <button class="btn btn-sm btn-outline">Modifier</button>
+                                        <button class="btn btn-sm btn-outline">Supprimer</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Address 2 -->
+                                <div class="address-card">
+                                    <div class="address-type">Bureau</div>
+                                    <div class="address-content">
+                                        Jean Dupont<br>
+                                        45 Avenue des Champs-Élysées<br>
+                                        75008 Paris<br>
+                                        France<br>
+                                        Tél: 01 23 45 67 89
+                                    </div>
+                                    <div class="address-actions">
+                                        <button class="btn btn-sm btn-outline">Modifier</button>
+                                        <button class="btn btn-sm btn-outline">Supprimer</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Add New Address -->
+                                <div class="add-address">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <div>Ajouter une nouvelle adresse</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Methods Panel -->
+                        <div class="dashboard-panel" id="paymentPanel">
+                            <h2 class="panel-title">Moyens de paiement</h2>
+                            
+                            <div class="payment-methods">
+                                <!-- Payment Method 1 -->
+                                <div class="payment-card default">
+                                    <div class="payment-default-badge">Par défaut</div>
+                                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                                    <div class="payment-number">**** **** **** 1234</div>
+                                    <div class="payment-expiry">Expire: 05/25</div>
+                                    <div class="payment-actions">
+                                        <button class="btn btn-sm btn-outline">Modifier</button>
+                                        <button class="btn btn-sm btn-outline">Supprimer</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Payment Method 2 -->
+                                <div class="payment-card">
+                                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                                    <div class="payment-number">**** **** **** 5678</div>
+                                    <div class="payment-expiry">Expire: 08/24</div>
+                                    <div class="payment-actions">
+                                        <button class="btn btn-sm btn-outline">Modifier</button>
+                                        <button class="btn btn-sm btn-outline">Supprimer</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Add New Payment Method -->
+                                <div class="add-payment">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <div>Ajouter un moyen de paiement</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Panel -->
+                        <div class="dashboard-panel" id="securityPanel">
+                            <h2 class="panel-title">Sécurité</h2>
+                            
+                            <div class="security-section">
+                                <h3 class="security-title">Changer le mot de passe</h3>
+                                <p class="security-description">Pour votre sécurité, choisissez un mot de passe que vous n'utilisez sur aucun autre site.</p>
+                                
+                                <form>
+                                    <div class="form-group">
+                                        <label for="currentPassword">Mot de passe actuel</label>
+                                        <input type="password" id="currentPassword" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="newPassword">Nouveau mot de passe</label>
+                                        <input type="password" id="newPassword" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+                                        <input type="password" id="confirmNewPassword" class="form-control">
+                                    </div>
+                                    
+                                    <button type="button" class="btn">Mettre à jour le mot de passe</button>
+                                </form>
+                            </div>
+                            
+                            <div class="security-section">
+                                <h3 class="security-title">Authentification à deux facteurs</h3>
+                                <p class="security-description">Ajoutez une couche de sécurité supplémentaire à votre compte en activant l'authentification à deux facteurs.</p>
+                                
+                                <button type="button" class="btn">Activer l'authentification à deux facteurs</button>
+                            </div>
+                            
+                            <div class="security-section">
+                                <h3 class="security-title">Sessions actives</h3>
+                                <p class="security-description">Vous êtes actuellement connecté sur ces appareils :</p>
+                                
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Chrome sur Windows</div>
+                                            <div class="order-date">Paris, France - Actif maintenant</div>
+                                        </div>
+                                        <div class="order-status status-delivered">Cet appareil</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Safari sur iPhone</div>
+                                            <div class="order-date">Paris, France - Dernière activité il y a 2 jours</div>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline">Déconnecter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MY</h3>
+                    <p>La marque de vêtements qui vous accompagne dans tous vos moments.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Boutique</h3>
+                    <ul>
+                        <li><a href="#">Chemises</a></li>
+                        <li><a href="#">Pantalons</a></li>
+                        <li><a href="#">Vestes</a></li>
+                        <li><a href="#">Chaussures</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Compte</h3>
+                    <ul>
+                        <li><a href="#">Mon compte</a></li>
+                        <li><a href="#">Mes commandes</a></li>
+                        <li><a href="#">Mon panier</a></li>
+                        <li><a href="#">Mes favoris</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 MY. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle between login and register tabs
+        document.querySelectorAll('.auth-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.auth-tab').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all forms
+                document.querySelectorAll('.auth-form').forEach(function(form) {
+                    form.classList.remove('active');
+                });
+                
+                // Show the corresponding form
+                const tabName = this.getAttribute('data-tab');
+                document.getElementById(tabName + 'Form').classList.add('active');
+            });
+        });
+        
+        // Toggle between dashboard panels
+        document.querySelectorAll('.dashboard-nav-item').forEach(function(item) {
+            if (!item.classList.contains('logout')) {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    document.querySelectorAll('.dashboard-nav-item').forEach(function(i) {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all panels
+                    document.querySelectorAll('.dashboard-panel').forEach(function(panel) {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Show the corresponding panel
+                    const panelName = this.getAttribute('data-panel');
+                    document.getElementById(panelName + 'Panel').classList.add('active');
+                });
+            }
+        });
+        
+        // Login button - Show dashboard
+        document.getElementById('loginButton').addEventListener('click', function() {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('dashboardContainer').classList.add('active');
+        });
+        
+        // Register button - Show dashboard
+        document.getElementById('registerButton').addEventListener('click', function() {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('dashboardContainer').classList.add('active');
+        });
+        
+        // Logout button - Show auth forms
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            document.getElementById('dashboardContainer').classList.remove('active');
+            document.getElementById('authContainer').style.display = 'block';
+            
+            // Reset to login tab
+            document.querySelectorAll('.auth-tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+            
+            document.querySelectorAll('.auth-form').forEach(function(form) {
+                form.classList.remove('active');
+            });
+            document.getElementById('loginForm').classList.add('active');
+        });
+    </script>
+</body>
+</html>

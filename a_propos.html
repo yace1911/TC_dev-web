@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Yacine Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            background-color: white;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-actions a {
+            margin-left: 15px;
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            max-width: 600px;
+        }
+
+        /* About Sections */
+        .about-section {
+            background-color: white;
+            padding: 60px 0;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        /* Values Section */
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .value-description {
+            color: #666;
+        }
+        
+        /* Team Section */
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .member-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #666;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #4a6cf7;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            font-size: 20px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Search Form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 14px;
+            transition: width 0.3s;
+        }
+
+        .search-input:focus {
+            width: 250px;
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: -35px;
+        }
+
+        .search-btn:hover {
+            color: #4a6cf7;
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="acceuil.html">YacineBoutique</a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="acceuil.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="evenement.html">Événements</a></li>
+                        <li><a href="a_propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <form action="recherche.html" method="GET" class="search-form">
+                        <input type="text" name="q" placeholder="Rechercher..." class="search-input">
+                        <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    </form>
+                    <a href="Panier.html" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="Compte.html" title="Compte"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mobile-menu-btn" title="Menu"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Notre Histoire" class="hero-image">
+                <div class="hero-overlay">
+                    <h1 class="hero-title">Notre Histoire</h1>
+                    <p class="hero-subtitle">Découvrez l'histoire de Yacine Boutique et notre passion pour la mode</p>
+                </div>
+            </section>
+            
+            <!-- About Section -->
+            <section class="about-section">
+                <h2 class="section-title">Qui sommes-nous ?</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Fondée en 2023, Yacine Boutique est née d'une passion pour la mode et d'une vision : rendre la mode accessible à tous tout en maintenant des standards élevés de qualité et de style.</p>
+                        <br>
+                        <p>Notre boutique propose une sélection soigneusement choisie de vêtements et d'accessoires pour hommes, alliant tendance et élégance intemporelle. Nous croyons en une mode durable et responsable, c'est pourquoi nous sélectionnons méticuleusement nos fournisseurs et nos matériaux.</p>
+                        <br>
+                        <p>Chez Yacine Boutique, nous ne vendons pas seulement des vêtements, nous créons une expérience shopping unique où chaque client peut trouver son style personnel et se sentir à l'aise dans ses choix vestimentaires.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Notre Boutique" class="about-image">
+                </div>
+            </section>
+            
+            <!-- Values Section -->
+            <section class="about-section">
+                <h2 class="section-title">Nos Valeurs</h2>
+                <div class="values">
+                    <div class="value-card">
+                        <i class="fas fa-star value-icon"></i>
+                        <h3 class="value-title">Qualité</h3>
+                        <p class="value-description">Nous sélectionnons uniquement les meilleurs matériaux et finitions pour garantir la durabilité de nos produits.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-heart value-icon"></i>
+                        <h3 class="value-title">Passion</h3>
+                        <p class="value-description">Notre amour pour la mode se reflète dans chaque collection que nous créons.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-leaf value-icon"></i>
+                        <h3 class="value-title">Durabilité</h3>
+                        <p class="value-description">Nous nous engageons à réduire notre impact environnemental à travers des pratiques responsables.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-users value-icon"></i>
+                        <h3 class="value-title">Service Client</h3>
+                        <p class="value-description">Votre satisfaction est notre priorité absolue. Nous sommes là pour vous accompagner.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Team Section -->
+            <section class="about-section">
+                <h2 class="section-title">Notre Équipe</h2>
+                <div class="team">
+                    <div class="team-member">
+                        <img src="https://www.shutterstock.com/image-photo/portrait-happy-confident-middle-aged-600nw-2281024765.jpg" alt="Yacine" class="member-image">
+                        <h3 class="member-name">Mahmoud</h3>
+                        <p class="member-role">Fondateur & Directeur Créatif</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sarah" class="member-image">
+                        <h3 class="member-name">Sarah</h3>
+                        <p class="member-role">Directrice Marketing</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Thomas" class="member-image">
+                        <h3 class="member-name">Amine</h3>
+                        <p class="member-role">Responsable des Collections</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Yacine Boutique</h3>
+                    <p>La marque de vêtements qui vous accompagne dans tous vos moments.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Boutique</h3>
+                    <ul>
+                        <li><a href="#">Chemises</a></li>
+                        <li><a href="#">Pantalons</a></li>
+                        <li><a href="#">Vestes</a></li>
+                        <li><a href="#">Chaussures</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="a_propos.html">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Compte</h3>
+                    <ul>
+                        <li><a href="#">Mon compte</a></li>
+                        <li><a href="#">Mes commandes</a></li>
+                        <li><a href="#">Mon panier</a></li>
+                        <li><a href="#">Mes favoris</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Yacine Boutique. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

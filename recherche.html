@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche - Yacine Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            background-color: white;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-actions a {
+            margin-left: 15px;
+            font-size: 18px;
+        }
+
+        /* Search Form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 14px;
+            transition: width 0.3s;
+        }
+
+        .search-input:focus {
+            width: 250px;
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: -35px;
+        }
+
+        .search-btn:hover {
+            color: #4a6cf7;
+        }
+
+        /* Search Results */
+        .search-results {
+            padding: 40px 0;
+        }
+
+        .search-header {
+            margin-bottom: 30px;
+        }
+
+        .search-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .search-count {
+            color: #666;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 15px;
+        }
+
+        .product-category {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4a6cf7;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3a5bd9;
+        }
+
+        .btn-icon {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        .btn-icon:hover {
+            background-color: #f5f5f5;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            font-size: 20px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .search-form {
+                display: none;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="acceuil.html">YacineBoutique</a>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="acceuil.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="evenement.html">Événements</a></li>
+                        <li><a href="a_propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <form action="recherche.html" method="GET" class="search-form">
+                        <input type="text" name="q" placeholder="Rechercher..." class="search-input">
+                        <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    </form>
+                    <a href="Panier.html" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="Compte.html" title="Compte"><i class="fas fa-user"></i></a>
+                    <a href="#" class="mobile-menu-btn" title="Menu"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Results -->
+    <main class="search-results">
+        <div class="container">
+            <div class="search-header">
+                <h1>Résultats de recherche</h1>
+                <p class="search-count">Résultats pour : <span id="search-query"></span></p>
+            </div>
+
+            <div class="results-grid" id="search-results">
+                <!-- Les résultats seront ajoutés ici dynamiquement -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Yacine Boutique</h3>
+                    <p>La marque de vêtements qui vous accompagne dans tous vos moments.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Boutique</h3>
+                    <ul>
+                        <li><a href="#">Chemises</a></li>
+                        <li><a href="#">Pantalons</a></li>
+                        <li><a href="#">Vestes</a></li>
+                        <li><a href="#">Chaussures</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="a_propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Compte</h3>
+                    <ul>
+                        <li><a href="Compte.html">Mon compte</a></li>
+                        <li><a href="#">Mes commandes</a></li>
+                        <li><a href="Panier.html">Mon panier</a></li>
+                        <li><a href="#">Mes favoris</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Yacine Boutique. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Récupérer le terme de recherche depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q');
+        
+        // Afficher le terme de recherche
+        document.getElementById('search-query').textContent = searchQuery;
+
+        // Base de données des produits (à remplacer par une vraie base de données)
+        const products = [
+            {
+                id: 1,
+                name: "Chemise Oxford",
+                category: "Chemises",
+                price: "59.99 €",
+                image: "https://imagescdn.simons.ca/images/6736-206764-45-A1_2/la-chemise-oxford-monochrome-b-coupe-moderne-b.jpg?__=36",
+                rating: 4.5,
+                reviews: 24
+            },
+            {
+                id: 2,
+                name: "Pantalon Chino",
+                category: "Pantalons",
+                price: "79.99 €",
+                image: "https://www.atelierprive.com/18463-home_default/pantalon-chino-homme-beige.jpg",
+                rating: 4,
+                reviews: 18
+            },
+            {
+                id: 3,
+                name: "Veste en Jean",
+                category: "Vestes",
+                price: "99.99 €",
+                image: "https://boutiques-sevens.com/49448-large_default/replay-veste-en-jean-homme-dark-blue.jpg",
+                rating: 5,
+                reviews: 32
+            },
+            {
+                id: 4,
+                name: "Chaussures en Cuir",
+                category: "Chaussures",
+                price: "129.99 €",
+                image: "https://www.bexley.fr/fstrz/r/s/www.bexley.fr/media/catalog/product/cache/bc591ea1e15be6c82eb2a6d8638291c5/0/1/0157100k-bloomingdalesilver_noir_6.jpg",
+                rating: 4.5,
+                reviews: 27
+            }
+        ];
+
+        // Fonction de recherche
+        function searchProducts(query) {
+            if (!query) return [];
+            
+            query = query.toLowerCase();
+            return products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query)
+            );
+        }
+
+        // Afficher les résultats
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('search-results');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h2>Aucun résultat trouvé</h2>
+                        <p>Essayez avec d'autres termes de recherche</p>
+                    </div>
+                `;
+                return;
+            }
+
+            resultsContainer.innerHTML = results.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.price}</p>
+                        <div class="product-rating">
+                            ${generateStars(product.rating)}
+                            <span>(${product.reviews})</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">Ajouter au panier</a>
+                            <a href="#" class="btn-icon"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Générer les étoiles pour les notes
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Exécuter la recherche
+        const results = searchProducts(searchQuery);
+        displayResults(results);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace IT/Commercial - MY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        /* Header */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ccc;
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .header-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .header-icons i:hover {
+            color: #ccc;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #000;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .dashboard-nav-item {
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .dashboard-nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dashboard-nav-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .dashboard-nav-item.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .dashboard-content {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        
+        .dashboard-panel {
+            display: none;
+        }
+        
+        .dashboard-panel.active {
+            display: block;
+        }
+        
+        .panel-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #000;
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-check input {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #333;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #000;
+            border: 1px solid #000;
+        }
+        
+        .btn-outline:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+        
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .data-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 0.8rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-item-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background-color: #ffc107;
+            color: #000;
+        }
+        
+        .status-approved {
+            background-color: #28a745;
+            color: #fff;
+        }
+        
+        .status-rejected {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        
+        /* Product Card */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .product-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.2rem;
+        }
+        
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-stock {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* File Upload */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-upload-label {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #f0f0f0;
+            border: 1px dashed #aaa;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .file-upload:hover .file-upload-label {
+            background-color: #e0e0e0;
+        }
+        
+        .file-preview {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .file-preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .file-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .file-preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 3rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #fff;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .footer-links a {
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ccc;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            background-color: #555;
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            
+            .dashboard-sidebar {
+                width: 100%;
+            }
+            
+            .dashboard-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .dashboard-nav-item {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .header-icons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .dashboard-nav-item {
+                min-width: 100%;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">MY</div>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="acceuil.html">Accueil</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="#">Événements</a></li>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="header-icons">
+                <a href="Compte.html"><i class="fas fa-user"></i></a>
+                <a href="Panier.html"><i class="fas fa-shopping-cart"></i></a>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="page-title">Espace IT/Commercial</h1>
+        
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="dashboard-sidebar">
+                <div class="dashboard-nav">
+                    <div class="dashboard-nav-item active" data-panel="events">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Événements</span>
+                    </div>
+                    <div class="dashboard-nav-item" data-panel="products">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Produits</span>
+                    </div>
+                    <div class="dashboard-nav-item" data-panel="stats">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistiques</span>
+                    </div>
+                    <div class="dashboard-nav-item" data-panel="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </div>
+                    <div class="dashboard-nav-item logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="dashboard-content">
+                <!-- Events Panel -->
+                <div id="eventsPanel" class="dashboard-panel active">
+                    <h2 class="panel-title">Gestion des Événements</h2>
+                    
+                    <div class="alert alert-info">
+                        Les images d'événements seront publiées après validation par un administrateur.
+                    </div>
+                    
+                    <button class="btn" id="addEventBtn">
+                        <i class="fas fa-plus"></i> Ajouter un événement
+                    </button>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x200?text=Salon+Mode+2023" alt="Salon Mode 2023">
+                            <div class="gallery-item-overlay">
+                                <div class="status-badge status-pending">En attente</div>
+                                <h4>Salon Mode 2023</h4>
+                                <p>Ajouté le 12/05/2023</p>
+                                <div class="gallery-item-actions">
+                                    <button class="btn btn-sm btn-outline">Modifier</button>
+                                    <button class="btn btn-sm btn-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x200?text=Fashion+Week+Paris" alt="Fashion Week Paris">
+                            <div class="gallery-item-overlay">
+                                <div class="status-badge status-approved">Approuvé</div>
+                                <h4>Fashion Week Paris</h4>
+                                <p>Ajouté le 05/04/2023</p>
+                                <div class="gallery-item-actions">
+                                    <button class="btn btn-sm btn-outline">Modifier</button>
+                                    <button class="btn btn-sm btn-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x200?text=Expo+Design+2023" alt="Expo Design 2023">
+                            <div class="gallery-item-overlay">
+                                <div class="status-badge status-rejected">Rejeté</div>
+                                <h4>Expo Design 2023</h4>
+                                <p>Ajouté le 20/03/2023</p>
+                                <div class="gallery-item-actions">
+                                    <button class="btn btn-sm btn-outline">Modifier</button>
+                                    <button class="btn btn-sm btn-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x200?text=Salon+du+Textile" alt="Salon du Textile">
+                            <div class="gallery-item-overlay">
+                                <div class="status-badge status-approved">Approuvé</div>
+                                <h4>Salon du Textile</h4>
+                                <p>Ajouté le 15/02/2023</p>
+                                <div class="gallery-item-actions">
+                                    <button class="btn btn-sm btn-outline">Modifier</button>
+                                    <button class="btn btn-sm btn-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Panel -->
+                <div id="productsPanel" class="dashboard-panel">
+                    <h2 class="panel-title">Gestion des Produits</h2>
+                    
+                    <button class="btn" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Ajouter un produit
+                    </button>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Prix</th>
+                                    <th>Stock</th>
+                                    <th>Catégorie</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="https://via.placeholder.com/50x50?text=T-shirt" alt="T-shirt" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>T-shirt Basic Noir</td>
+                                    <td>29.99 €</td>
+                                    <td>45</td>
+                                    <td>T-shirts</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-sm btn-outline edit-product" data-id="1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-product" data-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://via.placeholder.com/50x50?text=Jeans" alt="Jeans" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>Jeans Slim Fit</td>
+                                    <td>59.99 €</td>
+                                    <td>28</td>
+                                    <td>Pantalons</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-sm btn-outline edit-product" data-id="2">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-product" data-id="2">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://via.placeholder.com/50x50?text=Veste" alt="Veste" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>Veste en Cuir</td>
+                                    <td>149.99 €</td>
+                                    <td>12</td>
+                                    <td>Vestes</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-sm btn-outline edit-product" data-id="3">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-product" data-id="3">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://via.placeholder.com/50x50?text=Robe" alt="Robe" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>Robe d'Été Fleurie</td>
+                                    <td>79.99 €</td>
+                                    <td>20</td>
+                                    <td>Robes</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-sm btn-outline edit-product" data-id="4">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-product" data-id="4">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://via.placeholder.com/50x50?text=Chaussures" alt="Chaussures" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>Sneakers Urban</td>
+                                    <td>89.99 €</td>
+                                    <td>15</td>
+                                    <td>Chaussures</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-sm btn-outline edit-product" data-id="5">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-product" data-id="5">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Statistics Panel -->
+                <div id="statsPanel" class="dashboard-panel">
+                    <h2 class="panel-title">Statistiques</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-shopping-bag" style="font-size: 2rem; color: #000; margin-bottom: 1rem;"></i>
+                            <h3>45</h3>
+                            <p>Produits en stock</p>
+                        </div>
+                        
+                        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-calendar-alt" style="font-size: 2rem; color: #000; margin-bottom: 1rem;"></i>
+                            <h3>12</h3>
+                            <p>Événements publiés</p>
+                        </div>
+                        
+                        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-eye" style="font-size: 2rem; color: #000; margin-bottom: 1rem;"></i>
+                            <h3>1,245</h3>
+                            <p>Vues ce mois</p>
+                        </div>
+                        
+                        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-shopping-cart" style="font-size: 2rem; color: #000; margin-bottom: 1rem;"></i>
+                            <h3>87</h3>
+                            <p>Ventes ce mois</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Ventes mensuelles</h3>
+                        <div style="height: 300px; display: flex; align-items: flex-end; gap: 10px;">
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 30%; margin-bottom: 0.5rem;"></div>
+                                <span>Jan</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 45%; margin-bottom: 0.5rem;"></div>
+                                <span>Fév</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 60%; margin-bottom: 0.5rem;"></div>
+                                <span>Mar</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 40%; margin-bottom: 0.5rem;"></div>
+                                <span>Avr</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 75%; margin-bottom: 0.5rem;"></div>
+                                <span>Mai</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 65%; margin-bottom: 0.5rem;"></div>
+                                <span>Juin</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 80%; margin-bottom: 0.5rem;"></div>
+                                <span>Juil</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 70%; margin-bottom: 0.5rem;"></div>
+                                <span>Août</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 55%; margin-bottom: 0.5rem;"></div>
+                                <span>Sep</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 50%; margin-bottom: 0.5rem;"></div>
+                                <span>Oct</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 60%; margin-bottom: 0.5rem;"></div>
+                                <span>Nov</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; background-color: #000; height: 90%; margin-bottom: 0.5rem;"></div>
+                                <span>Déc</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                        <h3 style="margin-bottom: 1rem;">Produits les plus vendus</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://via.placeholder.com/50x50?text=T-shirt" alt="T-shirt" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <div style="flex: 1;">
+                                    <h4>T-shirt Basic Noir</h4>
+                                    <div style="width: 100%; height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 85%; height: 100%; background-color: #000;"></div>
+                                    </div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://via.placeholder.com/50x50?text=Jeans" alt="Jeans" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <div style="flex: 1;">
+                                    <h4>Jeans Slim Fit</h4>
+                                    <div style="width: 100%; height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 70%; height: 100%; background-color: #000;"></div>
+                                    </div>
+                                </div>
+                                <span>70%</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://via.placeholder.com/50x50?text=Robe" alt="Robe" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <div style="flex: 1;">
+                                    <h4>Robe d'Été Fleurie</h4>
+                                    <div style="width: 100%; height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 65%; height: 100%; background-color: #000;"></div>
+                                    </div>
+                                </div>
+                                <span>65%</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://via.placeholder.com/50x50?text=Veste" alt="Veste" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <div style="flex: 1;">
+                                    <h4>Veste en Cuir</h4>
+                                    <div style="width: 100%; height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 50%; height: 100%; background-color: #000;"></div>
+                                    </div>
+                                </div>
+                                <span>50%</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://via.placeholder.com/50x50?text=Chaussures" alt="Chaussures" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <div style="flex: 1;">
+                                    <h4>Sneakers Urban</h4>
+                                    <div style="width: 100%; height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 45%; height: 100%; background-color: #000;"></div>
+                                    </div>
+                                </div>
+                                <span>45%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Panel -->
+                <div id="settingsPanel" class="dashboard-panel">
+                    <h2 class="panel-title">Paramètres</h2>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Nom d'utilisateur</label>
+                            <input type="text" id="username" class="form-control" value="commercial_user">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" value="commercial@my-fashion.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentPassword">Mot de passe actuel</label>
+                            <input type="password" id="currentPassword" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword">Nouveau mot de passe</label>
+                            <input type="password" id="newPassword" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmer le mot de passe</label>
+                            <input type="password" id="confirmPassword" class="form-control">
+                        </div>
+                        
+                        <h3 style="margin: 2rem 0 1rem;">Notifications</h3>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="emailNotif" checked>
+                            <label for="emailNotif">Recevoir des notifications par email</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="productNotif" checked>
+                            <label for="productNotif">Notifications pour les nouveaux produits</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="eventNotif" checked>
+                            <label for="eventNotif">Notifications pour les événements</label>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="margin-top: 1.5rem;">Enregistrer les modifications</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Ajouter un événement</h2>
+            
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventName">Nom de l'événement</label>
+                    <input type="text" id="eventName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventDescription">Description</label>
+                    <textarea id="eventDescription" class="form-control" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventLocation">Lieu</label>
+                        <input type="text" id="eventLocation" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Images</label>
+                    <div class="file-upload">
+                        <input type="file" id="eventImages" multiple accept="image/*">
+                        <label for="eventImages" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i> Choisir des images
+                        </label>
+                    </div>
+                    <div class="file-preview" id="eventImagesPreview"></div>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="eventPublish" checked>
+                    <label for="eventPublish">Soumettre pour publication</label>
+                </div>
+                
+                <button type="submit" class="btn" style="margin-top: 1.5rem;">Ajouter l'événement</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Ajouter un produit</h2>
+            
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productName">Nom du produit</label>
+                    <input type="text" id="productName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" class="form-control" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">Prix (€)</label>
+                        <input type="number" id="productPrice" class="form-control" step="0.01" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productStock">Stock</label>
+                        <input type="number" id="productStock" class="form-control" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productCategory">Catégorie</label>
+                    <select id="productCategory" class="form-control" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="T-shirts">T-shirts</option>
+                        <option value="Pantalons">Pantalons</option>
+                        <option value="Vestes">Vestes</option>
+                        <option value="Robes">Robes</option>
+                        <option value="Chaussures">Chaussures</option>
+                        <option value="Accessoires">Accessoires</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Images du produit</label>
+                    <div class="file-upload">
+                        <input type="file" id="productImages" multiple accept="image/*">
+                        <label for="productImages" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i> Choisir des images
+                        </label>
+                    </div>
+                    <div class="file-preview" id="productImagesPreview"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Options disponibles</label>
+                    
+                    <div style="margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Tailles</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeXS">
+                                <label for="sizeXS">XS</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeS">
+                                <label for="sizeS">S</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeM" checked>
+                                <label for="sizeM">M</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeL" checked>
+                                <label for="sizeL">L</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeXL" checked>
+                                <label for="sizeXL">XL</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="sizeXXL">
+                                <label for="sizeXXL">XXL</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Couleurs</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="colorBlack" checked>
+                                <label for="colorBlack">Noir</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="colorWhite" checked>
+                                <label for="colorWhite">Blanc</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="colorRed">
+                                <label for="colorRed">Rouge</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="colorBlue">
+                                <label for="colorBlue">Bleu</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="colorGreen">
+                                <label for="colorGreen">Vert</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="productFeatured">
+                    <label for="productFeatured">Mettre en avant sur la page d'accueil</label>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="productAvailable" checked>
+                    <label for="productAvailable">Disponible à la vente</label>
+                </div>
+                
+                <button type="submit" class="btn" style="margin-top: 1.5rem;">Ajouter le produit</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Edit Product Modal -->
+    <div id="editProductModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Modifier le produit</h2>
+            
+            <form id="editProductForm">
+                <input type="hidden" id="editProductId">
+                
+                <div class="form-group">
+                    <label for="editProductName">Nom du produit</label>
+                    <input type="text" id="editProductName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editProductDescription">Description</label>
+                    <textarea id="editProductDescription" class="form-control" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editProductPrice">Prix (€)</label>
+                        <input type="number" id="editProductPrice" class="form-control" step="0.01" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editProductStock">Stock</label>
+                        <input type="number" id="editProductStock" class="form-control" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editProductCategory">Catégorie</label>
+                    <select id="editProductCategory" class="form-control" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="T-shirts">T-shirts</option>
+                        <option value="Pantalons">Pantalons</option>
+                        <option value="Vestes">Vestes</option>
+                        <option value="Robes">Robes</option>
+                        <option value="Chaussures">Chaussures</option>
+                        <option value="Accessoires">Accessoires</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Images actuelles</label>
+                    <div class="file-preview" id="editProductCurrentImages">
+                        <div class="file-preview-item">
+                            <img src="https://via.placeholder.com/100x100?text=Product" alt="Product">
+                            <div class="file-preview-remove">×</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Ajouter des images</label>
+                    <div class="file-upload">
+                        <input type="file" id="editProductImages" multiple accept="image/*">
+                        <label for="editProductImages" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i> Choisir des images
+                        </label>
+                    </div>
+                    <div class="file-preview" id="editProductImagesPreview"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Options disponibles</label>
+                    
+                    <div style="margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Tailles</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeXS">
+                                <label for="editSizeXS">XS</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeS">
+                                <label for="editSizeS">S</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeM" checked>
+                                <label for="editSizeM">M</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeL" checked>
+                                <label for="editSizeL">L</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeXL" checked>
+                                <label for="editSizeXL">XL</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editSizeXXL">
+                                <label for="editSizeXXL">XXL</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Couleurs</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editColorBlack" checked>
+                                <label for="editColorBlack">Noir</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editColorWhite" checked>
+                                <label for="editColorWhite">Blanc</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editColorRed">
+                                <label for="editColorRed">Rouge</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editColorBlue">
+                                <label for="editColorBlue">Bleu</label>
+                            </div>
+                            <div class="form-check" style="margin: 0;">
+                                <input type="checkbox" id="editColorGreen">
+                                <label for="editColorGreen">Vert</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="editProductFeatured">
+                    <label for="editProductFeatured">Mettre en avant sur la page d'accueil</label>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="editProductAvailable" checked>
+                    <label for="editProductAvailable">Disponible à la vente</label>
+                </div>
+                
+                <button type="submit" class="btn" style="margin-top: 1.5rem;">Enregistrer les modifications</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>MY</h3>
+                <p>Votre destination mode préférée pour des vêtements de qualité et tendance.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <div class="footer-links">
+                    <a href="acceuil.html">Accueil</a>
+                    <a href="boutique.html">Boutique</a>
+                    <a href="#">Événements</a>
+                    <a href="#">À propos</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Aide</h3>
+                <div class="footer-links">
+                    <a href="#">FAQ</a>
+                    <a href="#">Livraison</a>
+                    <a href="#">Retours</a>
+                    <a href="#">Suivi de commande</a>
+                    <a href="#">Conditions générales</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="footer-links">
+                    <a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a>
+                    <a href="mailto:contact@my-fashion.com"><i class="fas fa-envelope"></i> contact@my-fashion.com</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> 123 Rue de la Mode, 75001 Paris</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 MY. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Dashboard Tabs
+            const dashboardNavItems = document.querySelectorAll('.dashboard-nav-item:not(.logout)');
+            const dashboardPanels = document.querySelectorAll('.dashboard-panel');
+            
+            dashboardNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    dashboardNavItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all panels
+                    dashboardPanels.forEach(panel => panel.classList.remove('active'));
+                    // Show the corresponding panel
+                    const panelId = this.getAttribute('data-panel');
+                    document.getElementById(panelId + 'Panel').classList.add('active');
+                });
+            });
+            
+            // Logout Button
+            const logoutBtn = document.querySelector('.dashboard-nav-item.logout');
+            logoutBtn.addEventListener('click', function() {
+                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                    window.location.href = 'Compte.html';
+                }
+            });
+            
+            // Modal Functions
+            function openModal(modalId) {
+                document.getElementById(modalId).classList.add('active');
+            }
+            
+            function closeModal(modalId) {
+                document.getElementById(modalId).classList.remove('active');
+            }
+            
+            // Add Event Modal
+            const addEventBtn = document.getElementById('addEventBtn');
+            const addEventModal = document.getElementById('addEventModal');
+            const addEventModalClose = addEventModal.querySelector('.modal-close');
+            
+            addEventBtn.addEventListener('click', function() {
+                openModal('addEventModal');
+            });
+            
+            addEventModalClose.addEventListener('click', function() {
+                closeModal('addEventModal');
+            });
+            
+            // Add Product Modal
+            const addProductBtn = document.getElementById('addProductBtn');
+            const addProductModal = document.getElementById('addProductModal');
+            const addProductModalClose = addProductModal.querySelector('.modal-close');
+            
+            addProductBtn.addEventListener('click', function() {
+                openModal('addProductModal');
+            });
+            
+            addProductModalClose.addEventListener('click', function() {
+                closeModal('addProductModal');
+            });
+            
+            // Edit Product Modal
+            const editProductBtns = document.querySelectorAll('.edit-product');
+            const editProductModal = document.getElementById('editProductModal');
+            const editProductModalClose = editProductModal.querySelector('.modal-close');
+            
+            editProductBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    document.getElementById('editProductId').value = productId;
+                    
+                    // Here you would normally fetch the product data from the server
+                    // For this example, we'll just populate with dummy data
+                    if (productId === '1') {
+                        document.getElementById('editProductName').value = 'T-shirt Basic Noir';
+                        document.getElementById('editProductDescription').value = 'T-shirt basique en coton de haute qualité, parfait pour tous les jours.';
+                        document.getElementById('editProductPrice').value = '29.99';
+                        document.getElementById('editProductStock').value = '45';
+                        document.getElementById('editProductCategory').value = 'T-shirts';
+                    } else if (productId === '2') {
+                        document.getElementById('editProductName').value = 'Jeans Slim Fit';
+                        document.getElementById('editProductDescription').value = 'Jeans slim fit confortable et élégant, parfait pour toutes les occasions.';
+                        document.getElementById('editProductPrice').value = '59.99';
+                        document.getElementById('editProductStock').value = '28';
+                        document.getElementById('editProductCategory').value = 'Pantalons';
+                    }
+                    
+                    openModal('editProductModal');
+                });
+            });
+            
+            editProductModalClose.addEventListener('click', function() {
+                closeModal('editProductModal');
+            });
+            
+            // Delete Product Confirmation
+            const deleteProductBtns = document.querySelectorAll('.delete-product');
+            
+            deleteProductBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
+                        // Here you would normally send a delete request to the server
+                        alert('Produit supprimé avec succès !');
+                    }
+                });
+            });
+            
+            // File Upload Preview
+            function handleFileUpload(inputId, previewId) {
+                const input = document.getElementById(inputId);
+                const preview = document.getElementById(previewId);
+                
+                input.addEventListener('change', function() {
+                    preview.innerHTML = '';
+                    
+                    if (this.files) {
+                        Array.from(this.files).forEach(file => {
+                            if (!file.type.match('image.*')) {
+                                return;
+                            }
+                            
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                const previewItem = document.createElement('div');
+                                previewItem.className = 'file-preview-item';
+                                
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                img.alt = file.name;
+                                
+                                const removeBtn = document.createElement('div');
+                                removeBtn.className = 'file-preview-remove';
+                                removeBtn.innerHTML = '×';
+                                removeBtn.addEventListener('click', function() {
+                                    previewItem.remove();
+                                });
+                                
+                                previewItem.appendChild(img);
+                                previewItem.appendChild(removeBtn);
+                                preview.appendChild(previewItem);
+                            };
+                            
+                            reader.readAsDataURL(file);
+                        });
+                    }
+                });
+            }
+            
+            // Initialize file upload previews
+            handleFileUpload('eventImages', 'eventImagesPreview');
+            handleFileUpload('productImages', 'productImagesPreview');
+            handleFileUpload('editProductImages', 'editProductImagesPreview');
+            
+            // Form Submissions
+            document.getElementById('eventForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Événement ajouté avec succès ! Il sera publié après validation par un administrateur.');
+                closeModal('addEventModal');
+                this.reset();
+                document.getElementById('eventImagesPreview').innerHTML = '';
+            });
+            
+            document.getElementById('productForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Produit ajouté avec succès !');
+                closeModal('addProductModal');
+                this.reset();
+                document.getElementById('productImagesPreview').innerHTML = '';
+            });
+            
+            document.getElementById('editProductForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Produit mis à jour avec succès !');
+                closeModal('editProductModal');
+            });
+            
+            // Remove current product images
+            const currentImageRemoveBtns = document.querySelectorAll('#editProductCurrentImages .file-preview-remove');
+            
+            currentImageRemoveBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
